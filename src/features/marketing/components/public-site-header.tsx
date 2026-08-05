@@ -17,7 +17,7 @@ export function PublicSiteHeader() {
 
   return (
     <AppHeader>
-      <div className="content-rail relative flex h-[var(--layout-header-height)] items-center justify-between px-5 md:px-8">
+      <div className="content-rail-plain relative flex h-[var(--layout-header-height)] items-center justify-between px-5 md:px-8">
         <AppLogo compact />
         <nav className="hidden items-center gap-2 md:flex" aria-label="Primary navigation">
           {publicNavigation.map((item) => (

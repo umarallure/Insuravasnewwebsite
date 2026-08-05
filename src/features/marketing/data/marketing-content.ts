@@ -977,18 +977,13 @@ export const homeContent = {
         "Production rolls up the team tree live. Persistency, rollup debt, and every policy tracked to the carrier statement."
     }
   ] satisfies WalkthroughSection[],
-  splitNotes: [
-    {
-      title: "One subscription, two products.",
-      description:
-        "Sales AI and Back Office AI are not separate line items. You get the dialer, the AI, the CRM, the policy book, and the comp plans in the same seat."
-    },
-    {
-      title: "Live in 48 hours.",
-      description:
-        "Pick your plan, we build your AI floor around your carriers and calendars, and your first campaign goes out inside two days."
-    }
-  ] satisfies FeatureCardItem[],
+  /** Two-column product split, rendered by CtaSection's two-card variant. */
+  productSplit: {
+    title: "Sales AI",
+    description: "Voice, SMS, email, MLPD, drips, lifecycle campaigns, and compliance — the whole front office.",
+    title2: "Back Office AI",
+    description2: "Statements, commissions, persistency, policies, and the tree — reconciled without a spreadsheet."
+  },
   ashley: {
     name: "Ashley",
     eyebrow: "Meet",
@@ -1049,13 +1044,6 @@ export const homeContent = {
         price: "$149",
         interval: "/mo",
         description: "per agent · 14-day free trial",
-        features: [
-          "Ashley on voice, SMS, and email",
-          "Multi-line power dialer and AI booking",
-          "Full back office, policy book, and comp plans",
-          "A2P 10DLC brand and campaign registration",
-          "Compliance monitoring and evidence exports"
-        ],
         actionLabel: "Start free trial",
         href: routes.getStarted
       },
@@ -1066,12 +1054,6 @@ export const homeContent = {
         interval: "/yr",
         badge: "3 months free",
         description: "billed annually · about $111.75/mo",
-        features: [
-          "Everything in the monthly plan",
-          "Three months free versus paying monthly",
-          "Priority AI floor build and onboarding",
-          "Locked rate for the full term"
-        ],
         actionLabel: "Get annual",
         href: routes.getStarted,
         highlighted: true

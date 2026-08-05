@@ -56,14 +56,16 @@ export function PricingCard({ plan }: PricingCardProps) {
           <p className="mt-1 text-[13px] text-muted-foreground">{plan.description}</p>
         ) : null}
       </div>
-      <ul className="mt-6 space-y-3 border-t border-border pt-5" style={{ borderColor: "rgb(var(--color-border))" }}>
-        {plan.features.map((feature) => (
-          <li key={feature} className="flex gap-3 text-[14px] leading-6 text-muted-foreground">
-            <Check className="mt-1 h-4 w-4 shrink-0 text-success" aria-hidden="true" />
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
+      {plan.features?.length ? (
+        <ul className="mt-6 space-y-3 border-t border-border pt-5" style={{ borderColor: "rgb(var(--color-border))" }}>
+          {plan.features.map((feature) => (
+            <li key={feature} className="flex gap-3 text-[14px] leading-6 text-muted-foreground">
+              <Check className="mt-1 h-4 w-4 shrink-0 text-success" aria-hidden="true" />
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null}
       <Link
         href={plan.href}
         className={cn(

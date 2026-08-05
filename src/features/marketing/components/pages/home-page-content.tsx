@@ -36,6 +36,8 @@ export function HomePageContent({ content }: HomePageContentProps) {
         <HomeWalkthrough sections={content.sections} railItems={content.rail} />
       </MarketingSection>
 
+      <CtaSection {...content.productSplit} />
+
       <AshleySection
         name={content.ashley.name}
         eyebrow={content.ashley.eyebrow}

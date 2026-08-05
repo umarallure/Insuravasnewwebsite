@@ -18,10 +18,31 @@
   }
 }
 
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
 .animate-shimmer {
   animation: shimmer 1.6s linear infinite;
 }
 
 .animate-fade-up {
   animation: fade-up var(--motion-slow) var(--motion-ease) both;
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 1.5s var(--motion-ease) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-shimmer,
+  .animate-pulse-dot {
+    animation: none;
+  }
 }

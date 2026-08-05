@@ -1,8 +1,21 @@
 import { Phone, CalendarCheck, ArrowRight, FileText, Clock } from "lucide-react";
 import type { FeatureCardItem } from "@/features/marketing/types/marketing.types";
 
-const arcGradient =
-  "linear-gradient(90deg, #f0a032 0%, #ee5a8a 20%, #a855f7 42%, #8456ff 58%, #4385ff 78%, #22d3ee 100%)";
+/** Planet-horizon rim: warm amber on the left, white at the apex, teal on the right. */
+const arcGradient = [
+  "linear-gradient(90deg",
+  "rgba(120,58,18,0) 2%",
+  "rgba(168,80,26,0.40) 10%",
+  "rgba(222,118,44,0.88) 20%",
+  "rgba(246,166,96,1) 30%",
+  "rgba(255,226,201,1) 41%",
+  "rgba(255,255,255,1) 50%",
+  "rgba(214,245,242,1) 59%",
+  "rgba(116,204,195,1) 70%",
+  "rgba(58,148,143,0.85) 80%",
+  "rgba(28,78,76,0.38) 90%",
+  "rgba(18,48,48,0) 98%)"
+].join(", ");
 
 const iconMap = {
   "Answers at 2am": Phone,
@@ -37,16 +50,25 @@ export function AshleySection({ name, eyebrow, headline, capabilities }: AshleyS
           {headline}
         </p>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-64 md:h-80" aria-hidden="true">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-64 overflow-hidden md:h-80" aria-hidden="true">
+          {/* Diffuse coloured halo sitting above the rim. */}
           <div
-            className="absolute left-1/2 top-16 h-[560px] w-[190%] max-w-none -translate-x-1/2 rounded-[50%] opacity-45 blur-3xl"
+            className="absolute left-1/2 top-[54px] h-[560px] w-[120%] max-w-none -translate-x-1/2 rounded-[50%] opacity-40 blur-2xl"
             style={{ background: arcGradient }}
           />
+          {/* Rim source, revealed as a thin line by the dark ellipse below. */}
           <div
-            className="absolute left-1/2 top-[76px] h-[560px] w-[170%] max-w-none -translate-x-1/2 rounded-[50%]"
+            className="absolute left-1/2 top-[70px] h-[560px] w-[110%] max-w-none -translate-x-1/2 rounded-[50%]"
             style={{ background: arcGradient }}
           />
-          <div className="absolute left-1/2 top-[82px] h-[560px] w-[170%] max-w-none -translate-x-1/2 rounded-[50%] bg-[#0A0A0D]" />
+          <div className="absolute left-1/2 top-[74px] h-[560px] w-[110%] max-w-none -translate-x-1/2 rounded-[50%] bg-[#0A0A0D]" />
+          {/* White bloom concentrated at the apex. */}
+          <div
+            className="absolute left-1/2 top-[34px] h-[150px] w-[58%] max-w-none -translate-x-1/2 rounded-[50%] blur-2xl"
+            style={{
+              background: "radial-gradient(closest-side, rgba(255,255,255,0.30), rgba(255,255,255,0) 72%)"
+            }}
+          />
         </div>
       </div>
 

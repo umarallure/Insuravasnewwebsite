@@ -7,19 +7,32 @@ interface PanelFrameProps {
   badge?: ReactNode;
   /** Replaces the dots + title chrome with a custom toolbar, as the dialer does. */
   toolbar?: ReactNode;
+  /** Keeps the toolbar on the panel background instead of the lighter chrome bar. */
+  toolbarFlat?: boolean;
   children: ReactNode;
   className?: string;
   bodyClassName?: string;
 }
 
-export function PanelFrame({ title, badge, toolbar, children, className, bodyClassName }: PanelFrameProps) {
+export function PanelFrame({
+  title,
+  badge,
+  toolbar,
+  toolbarFlat = false,
+  children,
+  className,
+  bodyClassName
+}: PanelFrameProps) {
   return (
     <div
       className={cn("overflow-hidden rounded-md border shadow-lg", className)}
       style={{ background: "#0a0d14", borderColor: "#1f2531" }}
     >
       {toolbar ? (
-        <div className="border-b px-3 py-2.5" style={{ background: "#1c212b", borderColor: "#242a36" }}>
+        <div
+          className="border-b px-3.5 py-3"
+          style={{ background: toolbarFlat ? "transparent" : "#1c212b", borderColor: "#242a36" }}
+        >
           {toolbar}
         </div>
       ) : (

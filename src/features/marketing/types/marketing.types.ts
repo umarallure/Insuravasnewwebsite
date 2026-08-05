@@ -61,7 +61,8 @@ export interface PricingPlan {
   interval?: string;
   description?: string;
   badge?: string;
-  features: string[];
+  /** Omit to render the card without a feature checklist. */
+  features?: string[];
   actionLabel: string;
   href: string;
   highlighted?: boolean;

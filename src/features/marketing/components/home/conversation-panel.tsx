@@ -29,7 +29,7 @@ export function ConversationPanel() {
     <PanelFrame
       title="Conversations · Linda P. · Final expense"
       badge={<PanelPill tone="success">Appt set</PanelPill>}
-      className="mx-auto max-w-[520px]"
+      className="mx-auto max-w-[620px]"
       bodyClassName="p-4"
     >
       <ol className="space-y-3.5">
@@ -51,11 +51,17 @@ export function ConversationPanel() {
               </span>
               <p
                 className={cn(
-                  "w-fit max-w-[80%] rounded-sm border px-3 py-2 text-[0.8125rem] leading-5 text-foreground",
+                  "w-fit max-w-[80%] rounded-sm border px-3 py-2 text-foreground",
                   isAshley
                     ? "border-primary/45 bg-primary-subtle/85"
                     : "border-success/25 bg-success-subtle/70"
                 )}
+                style={{
+                  fontFamily: "'Inter', system-ui, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "17px",
+                  lineHeight: 1.3
+                }}
               >
                 {message.text}
               </p>
