@@ -1,0 +1,9 @@
+export { AffiliatePageContent } from "@/features/marketing/components/pages/affiliate-page-content";
+export { BackOfficePageContent } from "@/features/marketing/components/pages/back-office-page-content";
+export { ComparePageContent } from "@/features/marketing/components/pages/compare-page-content";
+export { CompliancePageContent } from "@/features/marketing/components/pages/compliance-page-content";
+export { DemoPageContent } from "@/features/marketing/components/pages/demo-page-content";
+export { GetStartedPageContent } from "@/features/marketing/components/pages/get-started-page-content";
+export { HomePageContent } from "@/features/marketing/components/pages/home-page-content";
+export { SalesAiPageContent } from "@/features/marketing/components/pages/sales-ai-page-content";
+export { TestimonialsPageContent } from "@/features/marketing/components/pages/testimonials-page-content";

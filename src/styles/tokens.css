@@ -1,0 +1,85 @@
+:root {
+  --font-sans: "Inter", "Segoe UI", Arial, sans-serif;
+
+  --hair:rgba(255,255,255,0.9);
+  --color-background: 5 7 12;
+  --color-surface: 05070C;
+  --color-surface-muted: 13 20 34;
+  --color-surface-elevated: 18 26 43;
+  --color-foreground: 242 245 251;
+  --color-muted-foreground: 128 145 169;
+  --color-primary: 132 86 255;
+  --color-primary-hover: 151 111 255;
+  --color-primary-active: 106 68 216;
+  --color-primary-subtle: 35 26 68;
+  --color-primary-foreground: 255 255 255;
+  --color-secondary: 32 210 149;
+  --color-secondary-foreground: 4 12 10;
+  --color-border: 31 39 55;
+  --color-input: 46 55 74;
+  --color-ring: 151 111 255;
+  --color-success: 29 201 132;
+  --color-success-subtle: 8 55 41;
+  --color-warning: 230 185 64;
+  --color-warning-subtle: 62 49 15;
+  --color-danger: 240 84 100;
+  --color-danger-subtle: 70 22 32;
+  --color-info: 89 155 255;
+  --color-info-subtle: 22 42 72;
+
+  --chart-primary: 132 86 255;
+  --chart-secondary: 32 210 149;
+  --chart-tertiary: 67 133 255;
+  --chart-positive: 29 201 132;
+  --chart-negative: 240 84 100;
+  --chart-warning: 230 185 64;
+  --chart-grid: 31 39 55;
+  --chart-label: 128 145 169;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.18);
+  --shadow-md: 0 8px 24px rgb(0 0 0 / 0.22);
+  --shadow-lg: 0 18px 52px rgb(0 0 0 / 0.3);
+  --shadow-glow: 0 0 0 1px rgb(var(--color-primary) / 0.18), 0 18px 60px rgb(var(--color-primary) / 0.12);
+
+  --text-display: clamp(3rem, 4vw, 5rem);
+  --text-title: 2.5rem;
+  --text-subtitle: 1.25rem;
+  --text-body: 1rem;
+  --text-caption: 0.8125rem;
+  --leading-display: 0.95;
+  --leading-title: 1;
+  --leading-subtitle: 1.35;
+  --leading-body: 1.6;
+  --leading-caption: 1.45;
+
+  --layout-page-max: 1240px;
+  --layout-header-height: 64px;
+  --layout-section-gap: 88px;
+  --layout-page-padding: 28px;
+  --layout-mobile-padding: 18px;
+  --layout-table-row-height: 48px;
+
+  --motion-fast: 120ms;
+  --motion-base: 180ms;
+  --motion-slow: 280ms;
+  --motion-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --color-background: 5 7 12;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --text-display: 3rem;
+    --text-title: 2rem;
+    --layout-section-gap: 64px;
+  }
+}

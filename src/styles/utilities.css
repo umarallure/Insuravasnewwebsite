@@ -1,0 +1,26 @@
+.content-rail {
+  width: min(100%, var(--layout-page-max));
+  margin-inline: auto;
+  border-inline: 1px solid rgb(var(--color-border) / 0.72);
+}
+
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.focus-ring:focus-visible {
+  outline-color: rgb(var(--color-ring));
+}
+
+.surface-grid {
+  background-image:
+    linear-gradient(rgb(var(--color-border) / 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--color-border) / 0.16) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.media-mask {
+  -webkit-mask-image: linear-gradient(180deg, black 78%, transparent 100%);
+  mask-image: linear-gradient(180deg, black 78%, transparent 100%);
+}
