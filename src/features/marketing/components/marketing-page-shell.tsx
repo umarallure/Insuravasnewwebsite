@@ -11,7 +11,7 @@ export function MarketingPageShell({ children }: MarketingPageShellProps) {
   return (
     <>
       <PublicSiteHeader />
-      <main className="content-rail min-h-screen bg-background">{children}</main>
+      <main className="content-rail min-h-screen overflow-x-hidden bg-background">{children}</main>
       <PublicSiteFooter />
       <CookieBanner />
     </>
