@@ -6,10 +6,10 @@ import { SectionNavigationRail } from "@/features/marketing/components/section-n
 import type { WalkthroughSection } from "@/features/marketing/types/marketing.types";
 
 const panels = [
-  { Component: ConversationPanel, backdrop: true },
-  { Component: CalendarPanel, backdrop: true },
-  { Component: DialerPanel, backdrop: true },
-  { Component: BackOfficePanel, backdrop: false }
+  { Component: ConversationPanel, backdrop: true, scrollable: false },
+  { Component: CalendarPanel, backdrop: true, scrollable: true },
+  { Component: DialerPanel, backdrop: true, scrollable: false },
+  { Component: BackOfficePanel, backdrop: false, scrollable: true }
 ];
 
 interface HomeWalkthroughProps {
@@ -43,7 +43,7 @@ export function HomeWalkthrough({ railItems, sections }: HomeWalkthroughProps) {
               </h3>
               {Panel ? (
                 <div className={panel.backdrop ? "surface-vlines mt-7 overflow-hidden rounded-md py-9 sm:-mx-6 sm:px-6" : "mt-7"}>
-                  <div className="overflow-x-auto">
+                  <div className={panel.scrollable ? "overflow-x-auto" : ""}>
                     <Panel />
                   </div>
                 </div>
