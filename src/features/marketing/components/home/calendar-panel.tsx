@@ -46,7 +46,7 @@ export function CalendarPanel() {
   return (
     <PanelFrame
       title="Calendar · Marcus Reed · this week"
-      badge={<PanelPill tone="primary">4 set by Ashley</PanelPill>}
+      badge={<PanelPill tone="success">4 set by Ashley</PanelPill>}
       bodyClassName="p-0"
     >
       <div className="overflow-x-auto">

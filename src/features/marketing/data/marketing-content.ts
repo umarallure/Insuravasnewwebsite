@@ -22,6 +22,7 @@ export const salesAiContent = {
   hero: {
     eyebrow: "Sales AI",
     title: "Your leads, worked to the end.",
+    titleLines: ["Your leads, worked", "to the end."],
     description:
       "Ashley answers, qualifies, books, and transfers. MLDP triples your manual dials. Nothing your agency owns sits untouched.",
     primaryAction: { label: "Start free trial", href: routes.getStarted }
@@ -60,166 +61,111 @@ export const salesAiContent = {
         badge: "Live reply",
         variant: "conversation",
         rows: [
-          { label: "Lead", value: "I'm interested. Can you tell me what this costs?" },
-          { label: "Ashley", value: "Absolutely. I can help narrow it down first. Do you already have coverage?" },
-          { label: "Lead", value: "No, but I have a family and keep putting it off." },
-          { label: "Ashley", value: "That is exactly what this is for. I can get you a quick quote and book a time." }
+          { label: "Lead", value: "Who is this?" },
+          { label: "Ashley", value: "Hi Linda, it’s Ashley with the life insurance office. You requested final expense info last week. Do you have 2 minutes today?" },
+          { label: "Lead", value: "How much is it a month?" },
+          { label: "Ashley", value: "Most folks are between $40 and $80 a month. A licensed agent has 3:30 or 5:15 open today for exact numbers. Which works better?" }
         ]
       }
     },
     {
       title: "Leads email back. The AI answers and books.",
-      mutedTitle: "It reads the reply, answers the question, and offers times.",
-      description: "Then books to your calendar. Take over any thread with one toggle.",
+      mutedTitle: "It reads the reply, answers the question, and offers times, then books to your calendar. Take over any thread with one toggle.",
+      description: "",
       panel: {
-        title: "Email AI - booked thread",
-        badge: "Booked",
-        variant: "table",
-        rows: [
-          { label: "Diane W.", value: "Asked about term life pricing", status: "Calendar sent", tone: "info" },
-          { label: "Robert H.", value: "Needed evening availability", status: "Booked", tone: "success" },
-          { label: "Karen J.", value: "Requested policy comparison", status: "Agent review", tone: "warning" }
-        ]
+        title: "Email Inbox",
+        badge: "AI on",
+        variant: "email"
       }
     },
     {
       title: "A campaign takes four decisions.",
-      mutedTitle: "Audience, agent, schedule, numbers.",
-      description: "Ashley handles the other ten thousand conversations after launch.",
+      mutedTitle: "Audience, agent, schedule, numbers. Ashley handles the other ten thousand.",
+      description: "",
       panel: {
-        title: "Campaign - aged leads",
-        badge: "Ready",
-        variant: "campaign",
-        rows: [
-          { label: "Audience", value: "Final expense aged 90 day - 487 leads", status: "Set", tone: "success" },
-          { label: "Agent", value: "Tobias W. calendar and transfer rules", status: "Set", tone: "success" },
-          { label: "Numbers", value: "Power dialer and A2P registered line", status: "Set", tone: "success" },
-          { label: "Schedule", value: "Weekdays 9am-8pm local time", status: "Set", tone: "success" }
-        ]
+        title: "Campaigns · New voice campaign",
+        badge: "Draft",
+        variant: "campaign-builder"
       }
     },
     {
       title: "Booked straight onto the right calendar.",
       mutedTitle: "Ashley checks availability, sets the slot, and confirms by text.",
-      description: "Each agent keeps their own calendar and transfer preferences.",
+      description: "",
       panel: {
-        title: "Calendar - booked from AI",
-        badge: "6 set by Ashley",
-        variant: "calendar",
-        rows: [
-          { label: "Laura B.", value: "10:45 AM quote review" },
-          { label: "Marcus R.", value: "1:30 PM beneficiary call" },
-          { label: "Daniel K.", value: "3:15 PM policy check" },
-          { label: "Faith P.", value: "5:40 PM final expense" }
-        ]
+        title: "Calendar · Marcus Reed · this week",
+        badge: "4 set by Ashley",
+        variant: "calendar-week"
       }
     },
     {
       title: "Triple your dials without touching a keypad.",
       mutedTitle: "MLPD runs three lines at once and drops you into live conversations only.",
-      description: "The agent gets the live lead when a real person is ready to talk.",
+      description: "",
       panel: {
         title: "MLPD - live dialer",
         badge: "Live",
-        variant: "dialer",
-        metrics: [
-          { label: "Dialing", value: "3 lines" },
-          { label: "Live", value: "1 caller" },
-          { label: "Queue", value: "42 open" }
-        ],
-        rows: [
-          { label: "Answered", tone: "success" },
-          { label: "Appointment booked", tone: "primary" },
-          { label: "Needs callback", tone: "warning" }
-        ]
+        variant: "dialer-v2"
       }
     },
     {
       title: "Campaigns that never forget.",
       mutedTitle: "SMS, voice, and email steps fire on schedule until the lead answers or opts out.",
-      description: "INSURVAS keeps every attempt coordinated across channels.",
+      description: "",
       panel: {
-        title: "Drip campaign - outbound attempts",
+        title: "Drip campaign · Aged final expense · 173 enrolled",
         badge: "Active",
-        variant: "campaign",
-        rows: [
-          { label: "Day 0", value: "Hey John, Ashley here from Tobias", status: "Sent", tone: "success" },
-          { label: "Day 2", value: "Email replay with quote link", status: "Queued", tone: "info" },
-          { label: "Day 4", value: "Final expense check-in", status: "Queued", tone: "info" },
-          { label: "Day 7", value: "Opportunity follow-up", status: "Queued", tone: "warning" }
-        ]
+        variant: "drip-sequence"
       }
     },
     {
       title: "Email drips by product type.",
-      mutedTitle: "Sequences send from your own verified domain on the same path leads ask about.",
-      description: "Working every lead for days. No per-lead babysitting.",
+      mutedTitle: "Sequences send from your own verified domain on the same path leads ask about. Working every lead for days.",
+      description: "",
       panel: {
-        title: "Email campaign builder",
-        badge: "Saved",
-        variant: "table",
-        rows: [
-          { label: "Final expense sequence", value: "5 touches over 9 days", status: "Active", tone: "success" },
-          { label: "Mortgage protection", value: "Quote and callback path", status: "Active", tone: "success" },
-          { label: "Term life nurture", value: "Education plus calendar offer", status: "Draft", tone: "warning" }
-        ]
+        title: "Email Campaigns · New Email Campaign",
+        badge: "Final expense",
+        variant: "email-builder"
       }
     },
     {
       title: "Worked past the Sold, automatically.",
-      mutedTitle: "Customer care, chargeback win-back, and beneficiary referrals enroll themselves.",
-      description: "Every close seeds new leads without a spreadsheet.",
+      mutedTitle: "Customer care, chargeback win-back, and beneficiary referrals enroll themselves. Every close seeds new leads.",
+      description: "",
       panel: {
-        title: "Lifecycle automations",
-        badge: "After sold",
-        variant: "campaign",
-        rows: [
-          { label: "Welcome call", value: "New policyholder", status: "Active", tone: "success" },
-          { label: "Beneficiary referral", value: "Emergency contact became lead", status: "Active", tone: "success" },
-          { label: "Win-back follow-up", value: "Chargeback save path", status: "Scheduled", tone: "info" }
-        ]
+        title: "Pipeline · lifecycle campaigns",
+        badge: "Auto-enroll",
+        variant: "lifecycle"
       }
     },
     {
       title: "Every call recorded, transcribed, summarized.",
-      mutedTitle: "Disposition and next step synced to the lead automatically.",
-      description: "Train on the calls that actually closed.",
+      mutedTitle: "Disposition and next step synced to the lead automatically. Train on the calls that actually closed.",
+      description: "",
       panel: {
-        title: "Call record - AI summary",
-        badge: "Agent note",
-        variant: "table",
-        rows: [
-          { label: "Transcript", value: "Lead asked about final expense and spouse coverage", status: "Saved", tone: "success" },
-          { label: "Disposition", value: "Appointment booked for tomorrow", status: "Synced", tone: "success" },
-          { label: "Next step", value: "Send quote prep text", status: "Queued", tone: "info" }
-        ]
+        title: "Call · Linda P. · 4m 12s",
+        badge: "Appt set",
+        variant: "call-summary"
       }
     },
     {
       title: "Compliant out of the box.",
-      mutedTitle: "FTC, TCR, and TCPA across all 50 states.",
-      description: "Opt-outs and DNC handled. Numbers monitored for spam flags.",
+      mutedTitle: "FTC, TCR, and TCPA across all 50 states. Opt-outs and DNC handled. Numbers monitored for spam flags.",
+      description: "",
       panel: {
-        title: "Compliance monitor",
+        title: "Trust center · compliance & phone health",
         badge: "All clear",
-        variant: "table",
-        rows: [
-          { label: "A2P / TCR", value: "Registered traffic only", status: "Healthy", tone: "success" },
-          { label: "9am-8pm local", value: "Quiet hours enforced", status: "Healthy", tone: "success" },
-          { label: "Opt-out", value: "STOP handled automatically", status: "Healthy", tone: "success" }
-        ]
+        variant: "compliance-health"
       }
     }
   ] satisfies DetailSection[],
   closingCta: {
-    title: "Sales AI",
-    title2: "Back Office AI",
-    description: "Voice, SMS, email, MLPD, drips, lifecycle campaigns, and compliance — the whole front office.",
-    description2: "Statements, commissions, persistency, policies, and the tree — reconciled without a spreadsheet.",
+    title: "Every lead your agency owns, worked to the end.",
+    mutedTitle: "Start with the book you already have.",
+    quote: "Bro, 11 transfers in 30 minutes. I can't get to them all.",
+    attribution: "Jared C. · Mortgage protection agent",
     primaryAction: { label: "Start free trial", href: routes.getStarted },
-    secondaryAction: { label: "Watch the demo", href: routes.demo },
-    ctaText: "Running an agency?",
-    ctaLink: { label: "Independent setup from $499 one-time ›", href: routes.affiliates }
+    secondaryAction: { label: "Talk to us", href: routes.demo }
   }
 };
 

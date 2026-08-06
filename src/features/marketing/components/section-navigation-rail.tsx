@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { cn } from "@/lib/utils";
 
 interface SectionNavigationRailProps {
   items: string[];
@@ -56,27 +55,27 @@ export function SectionNavigationRail({ items }: SectionNavigationRailProps) {
   }, [ids]);
 
   return (
-    <nav aria-label="Product sections">
-      <ul className="flex gap-x-6 gap-y-3 overflow-x-auto pb-1 lg:block lg:space-y-[1.4rem] lg:overflow-visible lg:pb-0">
+    <nav aria-label="Product sections" className="hidden lg:block">
+      <ul className="space-y-[1.4rem]">
         {items.map((item, index) => {
           const id = ids[index];
           const isActive = activeId === id;
 
           return (
-            <li key={item} className="relative shrink-0">
-              {isActive ? (
-                <span
-                  className="absolute -left-3 top-0 hidden h-full w-0.5 rounded-full bg-primary-hover lg:block"
-                  aria-hidden="true"
-                />
-              ) : null}
+            <li key={item}>
               <a
                 href={`#${id}`}
                 aria-current={isActive ? "location" : undefined}
-                className={cn(
-                  "block whitespace-nowrap rounded-xs text-[0.8125rem] font-semibold leading-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:whitespace-normal",
-                  isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                )}
+                className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                style={{
+                  fontWeight: 500,
+                  fontSize: "15px",
+                  lineHeight: 1.3,
+                  color: isActive ? "#f0f2f5" : "#6b7280",
+                  borderLeft: isActive ? "2px solid #a78bfa" : "2px solid transparent",
+                  paddingLeft: "14px",
+                  transition: "color .25s"
+                }}
                 onClick={() => setActiveId(id)}
               >
                 {item}

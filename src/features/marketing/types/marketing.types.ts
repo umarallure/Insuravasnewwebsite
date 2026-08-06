@@ -44,7 +44,7 @@ export interface ProductPanel {
   rows?: ProductRow[];
   metrics?: ProductMetric[];
   chartValues?: number[];
-  variant?: "conversation" | "table" | "chart" | "calendar" | "campaign" | "dialer";
+  variant?: "conversation" | "table" | "chart" | "calendar" | "campaign" | "dialer" | "email" | "campaign-builder" | "calendar-week" | "dialer-v2" | "drip-sequence" | "email-builder" | "lifecycle" | "call-summary" | "compliance-health";
 }
 
 export interface DetailSection {

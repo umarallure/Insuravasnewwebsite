@@ -19,14 +19,16 @@ export function PublicSiteHeader() {
     <AppHeader>
       <div className="content-rail-plain relative flex h-[var(--layout-header-height)] items-center justify-between px-5 md:px-8">
         <AppLogo compact />
-        <nav className="hidden items-center gap-2 md:flex" aria-label="Primary navigation">
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
           {publicNavigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className={cn(
-                "rounded-full border border-transparent px-3 py-1.5 text-sm font-semibold text-muted-foreground transition-colors hover:border-white/20 hover:bg-white/5 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                pathname === item.href && "border-white/40 bg-white/15 text-white shadow-sm"
+                "px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                pathname === item.href
+                  ? "rounded-md bg-white/10 text-white"
+                  : ""
               )}
             >
               {item.label}

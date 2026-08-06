@@ -124,18 +124,18 @@ const columnLabel = {
   color: tone.label
 } as const;
 
-export function BackOfficePanel() {
+export function BackOfficePanel({ hideStats = false }: { hideStats?: boolean } = {}) {
   return (
     <PanelFrame
       title="Back Office · Team tree · production rollup"
       badge={<PanelPill tone="primary">MTD</PanelPill>}
       bodyClassName="p-0"
     >
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto overflow-y-auto" style={{ maxHeight: hideStats ? "320px" : undefined }}>
         {/* The third level is intentionally cropped by the panel edge to imply more depth. */}
-        <div className="overflow-hidden">
+        <div className={hideStats ? "" : "overflow-hidden"}>
           <div
-            className="min-w-[900px] -mb-1.5 px-5 pt-6"
+            className={`min-w-[900px] px-5 pt-6 ${hideStats ? "pb-5" : "-mb-1.5"}`}
             style={{
               backgroundImage: "radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px)",
               backgroundSize: "16px 16px"
@@ -185,6 +185,7 @@ export function BackOfficePanel() {
         </div>
       </div>
 
+      {!hideStats ? (
       <div className="grid border-t sm:grid-cols-3" style={{ borderColor: "#1f2531" }}>
         <div className="p-4">
           <span style={columnLabel}>Rollup debt</span>
@@ -258,6 +259,7 @@ export function BackOfficePanel() {
           </p>
         </div>
       </div>
+      ) : null}
     </PanelFrame>
   );
 }

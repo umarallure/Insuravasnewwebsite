@@ -12,6 +12,7 @@ interface PanelFrameProps {
   children: ReactNode;
   className?: string;
   bodyClassName?: string;
+  style?: React.CSSProperties;
 }
 
 export function PanelFrame({
@@ -21,12 +22,13 @@ export function PanelFrame({
   toolbarFlat = false,
   children,
   className,
-  bodyClassName
+  bodyClassName,
+  style
 }: PanelFrameProps) {
   return (
     <div
-      className={cn("overflow-hidden rounded-md border shadow-lg", className)}
-      style={{ background: "#0a0d14", borderColor: "#1f2531" }}
+      className={cn("overflow-hidden rounded-md border shadow-lg mb-8 ", className)}
+      style={{ background: "#0a0d14", borderColor: "#1f2531", ...style  }}
     >
       {toolbar ? (
         <div

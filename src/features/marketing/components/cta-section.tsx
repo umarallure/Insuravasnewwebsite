@@ -70,25 +70,90 @@ export function CtaSection({
   }
 
   return (
-    <section className="border-t border-border px-6 py-16 md:px-9 md:py-20">
-      <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-        <div className="max-w-2xl">
-          <h2 className={cn("font-bold text-foreground", compact ? "text-2xl" : "text-title")}>
+    <section
+      className="border-t border-border px-6 md:px-9"
+      style={{
+        paddingTop: compact ? "20px" : "72px",
+        paddingBottom: compact ? "20px" : "72px"
+      }}
+    >
+      <div
+        className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
+        style={compact ? { gap: "16px" } : undefined}
+      >
+        <div className={compact ? "min-w-0 flex-1" : "max-w-2xl"}>
+          <h2
+            className={cn("text-foreground", compact ? "" : "text-title")}
+            style={
+              compact
+                ? {
+                    fontWeight: 500,
+                    fontSize: "clamp(20px, 2vw, 26px)",
+                    lineHeight: 1.25,
+                    letterSpacing: "-0.01em"
+                  }
+                : { fontWeight: 500 }
+            }
+          >
             {title} {mutedTitle ? <span className="text-muted-foreground">{mutedTitle}</span> : null}
           </h2>
           {quote ? <p className="mt-8 text-sm leading-6 text-muted-foreground">&quot;{quote}&quot;</p> : null}
           {attribution ? <p className="mt-2 text-caption font-semibold text-foreground">{attribution}</p> : null}
         </div>
-        <div className="flex flex-wrap gap-3">
+        <div className="flex shrink-0 flex-wrap gap-3">
           {secondaryAction ? (
-            <Link href={secondaryAction.href} className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
-              {secondaryAction.label}
-            </Link>
+            compact ? (
+              <Link
+                href={secondaryAction.href}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  height: "40px",
+                  padding: "0 16px",
+                  borderRadius: "10px",
+                  fontWeight: 500,
+                  fontSize: "14.5px",
+                  lineHeight: 1,
+                  background: "#f5f6f8",
+                  border: "1px solid #f5f6f8",
+                  color: "#0b0c10",
+                  transition: "background-color .2s, border-color .2s"
+                }}
+              >
+                {secondaryAction.label}
+              </Link>
+            ) : (
+              <Link href={secondaryAction.href} className={cn(buttonVariants({ variant: "outline", size: "sm" }))}>
+                {secondaryAction.label}
+              </Link>
+            )
           ) : null}
           {primaryAction ? (
-            <Link href={primaryAction.href} className={cn(buttonVariants({ variant: "inverse", size: "sm" }))}>
-              {primaryAction.label}
-            </Link>
+            compact ? (
+              <Link
+                href={primaryAction.href}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  height: "40px",
+                  padding: "0 16px",
+                  borderRadius: "10px",
+                  fontWeight: 500,
+                  fontSize: "14.5px",
+                  lineHeight: 1,
+                  background: "#f5f6f8",
+                  border: "1px solid #f5f6f8",
+                  color: "#0b0c10",
+                  transition: "background-color .2s, border-color .2s"
+                }}
+              >
+                {primaryAction.label}
+              </Link>
+            ) : (
+              <Link href={primaryAction.href} className={cn(buttonVariants({ variant: "inverse", size: "sm" }))}>
+                {primaryAction.label}
+              </Link>
+            )
           ) : null}
         </div>
       </div>

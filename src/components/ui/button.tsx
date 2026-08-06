@@ -20,7 +20,7 @@ export const buttonVariants = cva(
         inverse: "bg-foreground text-background hover:bg-foreground/90"
       },
       size: {
-        sm: "h-9 px-4 text-xs",
+        sm: "h-9 px-4 text-sm",
         md: "h-11 px-5 text-sm",
         lg: "h-12 px-6 text-sm",
         icon: "h-10 w-10 p-0"
