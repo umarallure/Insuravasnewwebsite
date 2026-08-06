@@ -1,23 +1,17 @@
 import type { ProductPanel } from "@/features/marketing/types/marketing.types";
 import type { getComplianceContent } from "@/features/marketing/services/marketing.service";
+import { BackOfficeSidebar } from "@/features/marketing/components/back-office-sidebar";
 import { CtaSection } from "@/features/marketing/components/cta-section";
-import { DetailSections } from "@/features/marketing/components/detail-sections";
 import { FeatureGrid } from "@/features/marketing/components/feature-grid";
 import { MarketingHero } from "@/features/marketing/components/marketing-hero";
 import { MarketingSection } from "@/features/marketing/components/marketing-section";
-import { MetricNoteList } from "@/features/marketing/components/metric-note-list";
 import { ProductWindow } from "@/features/marketing/components/product-window";
 import { SectionHeading } from "@/features/marketing/components/section-heading";
 
 const heroPanel: ProductPanel = {
-  title: "Outbound gate - every call and text passes through",
+  title: "Outbound gate · every call and text passes through",
   badge: "Enforced",
-  variant: "table",
-  rows: [
-    { label: "Linda P. - SMS", value: "9am local, consent recorded", status: "Send", tone: "success" },
-    { label: "Robert M. - AI call", value: "Missing voice consent", status: "Blocked", tone: "danger" },
-    { label: "J. Alvarez - Email", value: "After quiet hours", status: "Deferred", tone: "warning" }
-  ]
+  variant: "compliance-gate"
 };
 
 interface CompliancePageContentProps {
@@ -38,10 +32,38 @@ export function CompliancePageContent({ content }: CompliancePageContentProps) {
         compact
       />
       <MarketingSection>
-        <DetailSections
-          sections={content.sections}
-          railItems={["Quiet hours", "Consent before AI dials", "Disclosure on record", "Abandoned calls handled", "Opt-outs cascade", "DNC that fails closed"]}
-        />
+        <div className="grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <BackOfficeSidebar
+              alignLeft
+              items={["Quiet hours, enforced", "Consent before the AI dials", "Disclosed, on the record", "Abandoned calls, handled", "Opt-outs cascade", "DNC that fails closed"]}
+            />
+          </div>
+          <div className="space-y-16 md:space-y-20 lg:col-span-8">
+            {content.sections.map((section, index) => (
+              <article key={section.title} id={`bo-section-${index + 1}`}>
+                <h2
+                  style={{
+                    fontWeight: 500,
+                    fontSize: "clamp(20px, 2vw, 26px)",
+                    lineHeight: 1.25,
+                    letterSpacing: "-0.01em",
+                    color: "#f0f2f5"
+                  }}
+                >
+                  {section.title}{" "}
+                  <span style={{ color: "#6b7280" }}>{section.mutedTitle}</span>
+                </h2>
+                {section.description ? (
+                  <p style={{ marginTop: "8px", fontSize: "14px", color: "#6b7280", lineHeight: 1.5 }}>{section.description}</p>
+                ) : null}
+                <div className="mt-7">
+                  <ProductWindow panel={section.panel} />
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
       </MarketingSection>
       <MarketingSection>
         <SectionHeading title="Your book, protected." mutedTitle="The data side of the same discipline." />
@@ -55,25 +77,38 @@ export function CompliancePageContent({ content }: CompliancePageContentProps) {
         </div>
       </MarketingSection>
       <MarketingSection>
-        <div className="grid gap-10 md:grid-cols-[1fr_420px] md:items-center">
-          <div>
-            <SectionHeading
-              title="Prove your leads are compliant."
-              mutedTitle="When a lead, a carrier, or a lawyer asks, you have the record."
-              className="mb-8"
-            />
-            <MetricNoteList items={content.proofBullets.map((title) => ({ title, description: "" }))} />
-          </div>
+        <h2
+          style={{
+            fontWeight: 500,
+            fontSize: "clamp(20px, 2vw, 26px)",
+            lineHeight: 1.25,
+            letterSpacing: "-0.01em",
+            color: "#f0f2f5",
+            marginBottom: "32px"
+          }}
+        >
+          Prove your leads are compliant.{" "}
+          <span style={{ color: "#6b7280" }}>When a lead, a carrier, or a lawyer asks — you have the record.</span>
+        </h2>
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+          <ul className="space-y-6">
+            {content.proofBullets.map((item) => (
+              <li key={item.title}>
+                <p style={{ fontSize: "14px", fontWeight: 700, color: "#f0f2f5" }}>{item.title}</p>
+                <p style={{ fontSize: "13px", color: "#6b7280", marginTop: "4px", lineHeight: 1.5 }}>{item.desc}</p>
+              </li>
+            ))}
+          </ul>
           <ProductWindow
             panel={{
-              title: "Lead legal export",
-              badge: "Evidence on entry",
+              title: "Lead import · aged-leads-may.csv",
+              badge: "Scrubbed on entry",
               variant: "table",
               rows: [
-                { label: "2,408 leads imported", value: "Quiet hours and DNC checked", status: "Pass", tone: "success" },
-                { label: "Consent records attached", value: "Source plus timestamp", status: "Verified", tone: "success" },
-                { label: "AI voice on this batch", value: "Enabled after attestation", status: "Enabled", tone: "success" },
-                { label: "Compliance log", value: "Export for carrier or counsel", status: "Ready", tone: "info" }
+                { label: "2,406 leads imported", status: "38 DNC matches stripped", tone: "neutral" },
+                { label: "Consent records attached", status: "Source · Language · Timestamp", tone: "success" },
+                { label: "AI voice on this batch", status: "Enabled after your attestation", tone: "info" },
+                { label: "Compliance log", status: "Export for carrier or counsel", tone: "neutral" }
               ]
             }}
           />

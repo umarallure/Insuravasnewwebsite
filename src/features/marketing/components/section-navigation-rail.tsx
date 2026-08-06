@@ -69,7 +69,7 @@ export function SectionNavigationRail({ items }: SectionNavigationRailProps) {
                 className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 style={{
                   fontWeight: 500,
-                  fontSize: "15px",
+                  fontSize: "17px",
                   lineHeight: 1.3,
                   color: isActive ? "#f0f2f5" : "#6b7280",
                   borderLeft: isActive ? "2px solid #a78bfa" : "2px solid transparent",

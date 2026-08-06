@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 
 interface BackOfficeSidebarProps {
   items: string[];
+  /** When true, text aligns left with a left border indicator instead of right. */
+  alignLeft?: boolean;
 }
 
-export function BackOfficeSidebar({ items }: BackOfficeSidebarProps) {
+export function BackOfficeSidebar({ items, alignLeft = false }: BackOfficeSidebarProps) {
   const ids = items.map((_, index) => `bo-section-${index + 1}`);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -44,9 +46,11 @@ export function BackOfficeSidebar({ items }: BackOfficeSidebarProps) {
                 fontSize: "17px",
                 fontWeight: 500,
                 color: activeIndex === index ? "#f0f2f5" : "#6b7280",
-                borderRight: activeIndex === index ? "2px solid #a78bfa" : "2px solid transparent",
-                paddingRight: "14px",
-                textAlign: "right",
+                borderLeft: alignLeft ? (activeIndex === index ? "2px solid #a78bfa" : "2px solid transparent") : undefined,
+                borderRight: !alignLeft ? (activeIndex === index ? "2px solid #a78bfa" : "2px solid transparent") : undefined,
+                paddingLeft: alignLeft ? "14px" : undefined,
+                paddingRight: !alignLeft ? "14px" : undefined,
+                textAlign: alignLeft ? "left" : "right",
                 transition: "color .25s"
               }}
             >

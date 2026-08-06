@@ -41,8 +41,8 @@ export function ProductWindow({ panel, className }: ProductWindowProps) {
                 textTransform: "uppercase",
                 padding: "3px 8px",
                 borderRadius: "5px",
-                border: (panel.variant === "calendar-week" || panel.variant === "dialer-v2" || panel.variant === "drip-sequence" || panel.variant === "call-summary") ? "1px solid rgba(34,197,94,0.5)" : "1px solid rgba(139,92,246,0.5)",
-                color: (panel.variant === "calendar-week" || panel.variant === "dialer-v2" || panel.variant === "drip-sequence" || panel.variant === "call-summary") ? "#4ade80" : "#a78bfa",
+                border: (panel.variant === "calendar-week" || panel.variant === "dialer-v2" || panel.variant === "drip-sequence" || panel.variant === "call-summary" || panel.variant === "compliance-gate" || panel.variant === "dialer-pacing" || panel.variant === "stop-cascade") ? "1px solid rgba(34,197,94,0.5)" : "1px solid rgba(139,92,246,0.5)",
+                color: (panel.variant === "calendar-week" || panel.variant === "dialer-v2" || panel.variant === "drip-sequence" || panel.variant === "call-summary" || panel.variant === "compliance-gate" || panel.variant === "dialer-pacing" || panel.variant === "stop-cascade") ? "#4ade80" : "#a78bfa",
                 background: "transparent"
               }}
             >
@@ -61,6 +61,13 @@ export function ProductWindow({ panel, className }: ProductWindowProps) {
           {panel.variant === "lifecycle" ? <LifecyclePanel /> : null}
           {panel.variant === "call-summary" ? <CallSummaryPanel /> : null}
           {panel.variant === "compliance-health" ? <ComplianceHealthPanel /> : null}
+          {panel.variant === "compliance-gate" ? <ComplianceGatePanel /> : null}
+          {panel.variant === "quiet-hours" ? <QuietHoursPanel /> : null}
+          {panel.variant === "consent-cards" ? <ConsentCardsPanel /> : null}
+          {panel.variant === "disclosure" ? <DisclosurePanel /> : null}
+          {panel.variant === "dialer-pacing" ? <DialerPacingPanel /> : null}
+          {panel.variant === "stop-cascade" ? <StopCascadePanel /> : null}
+          {panel.variant === "dnc-log" ? <DncLogPanel /> : null}
           {panel.variant === "chart" ? <ChartPanel panel={panel} /> : null}
           {panel.variant === "calendar" ? <CalendarPanel panel={panel} /> : null}
           {panel.variant === "campaign" ? <CampaignPanel panel={panel} /> : null}
@@ -544,6 +551,339 @@ function EmailBuilderPanel() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function DncLogPanel() {
+  const entries: { time: string; badge: string; badgeColor: string; badgeBg: string; desc: string }[] = [
+    { time: "2:07 PM", badge: "DNC added", badgeColor: "#f87171", badgeBg: "rgba(248,113,113,0.12)", desc: "STOP reply · SMS channel" },
+    { time: "1:44 PM", badge: "Send blocked", badgeColor: "#f87171", badgeBg: "rgba(248,113,113,0.12)", desc: "DNC match at the outbound gate" },
+    { time: "11:20 AM", badge: "Import scrubbed", badgeColor: "#fbbf24", badgeBg: "rgba(251,191,36,0.10)", desc: "38 suppressed numbers stripped from CSV" },
+    { time: "9:03 AM", badge: "DNC added", badgeColor: "#f87171", badgeBg: "rgba(248,113,113,0.12)", desc: "Spoken opt-out on AI call" },
+    { time: "9:00 AM", badge: "Check passed", badgeColor: "#4ade80", badgeBg: "rgba(34,197,94,0.10)", desc: "Outbound SMS · logged" }
+  ];
+
+  return (
+    <div>
+      <div className="space-y-0">
+        {entries.map((entry, index) => (
+          <div
+            key={`${entry.time}-${index}`}
+            className="flex items-center gap-4 px-4 py-3"
+            style={{ borderBottom: index < entries.length - 1 ? "1px solid #1a1f2a" : undefined }}
+          >
+            <span className="shrink-0" style={{ fontSize: "12px", color: "#6b7280", width: "56px" }}>{entry.time}</span>
+            <span
+              className="shrink-0"
+              style={{
+                fontSize: "9.5px",
+                fontWeight: 700,
+                letterSpacing: "0.07em",
+                textTransform: "uppercase",
+                padding: "3px 8px",
+                borderRadius: "5px",
+                background: entry.badgeBg,
+                color: entry.badgeColor
+              }}
+            >
+              {entry.badge}
+            </span>
+            <span style={{ fontSize: "13px", color: "#8a93a5" }}>{entry.desc}</span>
+          </div>
+        ))}
+      </div>
+      <p className="mt-3 text-center" style={{ fontSize: "12px", fontStyle: "italic", color: "#6b7280" }}>
+        Every add, block, pass, and removal — timestamped, attributed, exportable
+      </p>
+    </div>
+  );
+}
+
+function StopCascadePanel() {
+  const actions = [
+    "Conversation closed, AI disabled for this lead",
+    "Scheduled drip steps cancelled",
+    "Added to your do-not-call list — SMS channel",
+    "Confirmation sent from the same number they texted",
+    "Written to the compliance log"
+  ];
+
+  return (
+    <div>
+      <div className="mb-3 inline-block rounded-md border px-3 py-2" style={{ borderColor: "#2a3348", background: "#12151f" }}>
+        <p style={{ fontSize: "10.5px", fontWeight: 600, color: "#8a93a5", marginBottom: "3px" }}>Lead · 2:07 PM</p>
+        <p style={{ fontSize: "16px", fontWeight: 700, color: "#f0f2f5" }}>STOP</p>
+      </div>
+
+      <div className="rounded-md border-l-2 px-4 py-3.5" style={{ borderLeftColor: "#22c55e", borderTop: "1px solid #1f2531", borderRight: "1px solid #1f2531", borderBottom: "1px solid #1f2531", borderRadius: "6px", background: "#0c1018" }}>
+        <ul className="space-y-2.5">
+          {actions.map((action) => (
+            <li key={action} className="flex items-start gap-2.5" style={{ fontSize: "13px", color: "#c3cad6" }}>
+              <span style={{ color: "#22c55e", flexShrink: 0 }}>✓</span>
+              {action}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <p className="mt-4 text-center" style={{ fontSize: "12px", fontStyle: "italic", color: "#6b7280" }}>
+        A spoken &quot;stop calling me&quot; on an AI call is honored the same way
+      </p>
+    </div>
+  );
+}
+
+function DialerPacingPanel() {
+  const lines = [
+    { label: "Line 1 · (813) 224-0561", status: "Connected → you", tone: "green" as const },
+    { label: "Line 2 · (602) 773-1148", status: "Released before ring answer", tone: "neutral" as const },
+    { label: "Line 3 · (916) 402-8830", status: "No answer", tone: "neutral" as const }
+  ];
+
+  const toneStyles = {
+    green: { color: "#4ade80", bg: "rgba(34,197,94,0.08)", border: "rgba(34,197,94,0.4)" },
+    neutral: { color: "#8a93a5", bg: "#12151f", border: "#2a3348" }
+  };
+
+  return (
+    <div>
+      <div className="space-y-2.5">
+        {lines.map((line) => {
+          const style = toneStyles[line.tone];
+          return (
+            <div
+              key={line.label}
+              className="flex items-center justify-between gap-4 rounded-md border px-4 py-3"
+              style={{ borderColor: "#1f2531", background: "#0c1018" }}
+            >
+              <p style={{ fontSize: "13px", fontWeight: 600, color: "#f0f2f5" }}>{line.label}</p>
+              <span
+                className="shrink-0"
+                style={{
+                  fontSize: "9.5px",
+                  fontWeight: 700,
+                  letterSpacing: "0.07em",
+                  textTransform: "uppercase",
+                  padding: "4px 10px",
+                  borderRadius: "5px",
+                  background: style.bg,
+                  border: `1px solid ${style.border}`,
+                  color: style.color
+                }}
+              >
+                {line.status}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="mt-3 rounded-md border-l-2 px-4 py-3" style={{  borderTop: "1px solid #1f2531", borderRight: "1px solid #1f2531", borderBottom: "1px solid #1f2531", borderRadius: "6px", background: "#0c1018" }}>
+        <p style={{ fontSize: "10.5px", fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "#8a93a5", marginBottom: "5px" }}>If a call is ever abandoned</p>
+        <p style={{ fontSize: "12.5px", color: "#c3cad6", lineHeight: 1.5 }}>
+          Your recorded callback message plays — with your name and number — and the caller is offered press-1 to opt out. Both are required before a multi-line campaign can start.
+        </p>
+      </div>
+
+      <p className="mt-4 text-center" style={{ fontSize: "12px", fontStyle: "italic", color: "#6b7280" }}>
+        Abandoned-call outcomes are tracked in your campaign metrics
+      </p>
+    </div>
+  );
+}
+
+function DisclosurePanel() {
+  return (
+    <div>
+      <div className="rounded-md border-l-2 px-4 py-3.5" style={{ borderLeftColor: "#a78bfa", borderTop: "1px solid #1f2531", borderRight: "1px solid #1f2531", borderBottom: "1px solid #1f2531", borderRadius: "6px", background: "#0c1018" }}>
+        <p style={{ fontSize: "10.5px", fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", color: "#8a93a5", marginBottom: "6px" }}>
+          Ashley · AI — First words, every call
+        </p>
+        <p style={{ fontSize: "13.5px", fontWeight: 500, color: "#c3cad6", lineHeight: 1.45 }}>
+          &quot;Hi, this is Ashley, an automated assistant with the life insurance office, calling on a recorded line...&quot;
+        </p>
+      </div>
+
+      <div className="mt-3.5 flex flex-wrap items-center justify-center gap-2">
+        <span style={{ fontSize: "9.5px", fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", padding: "4px 10px", borderRadius: "5px", background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.4)", color: "#4ade80" }}>Set once, agency-wide</span>
+        <span style={{ fontSize: "9.5px", fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", padding: "4px 10px", borderRadius: "5px", background: "#12151f", border: "1px solid #2a3348", color: "#8a93a5" }}>Spoken before anything else</span>
+      </div>
+
+      <p className="mt-3 text-center" style={{ fontSize: "12px", fontStyle: "italic", color: "#6b7280" }}>
+        Recorded human calls play a consent disclosure to both parties before recording starts
+      </p>
+    </div>
+  );
+}
+
+function ConsentCardsPanel() {
+  return (
+    <div className="grid gap-3 sm:grid-cols-2">
+      <div className="rounded-md border px-4 py-3.5" style={{ borderColor: "#1f2531", background: "#0c1018" }}>
+        <div className="flex items-center justify-between gap-3">
+          <p style={{ fontSize: "14px", fontWeight: 700, color: "#f0f2f5" }}>Linda P.</p>
+          <span style={{ fontSize: "9.5px", fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", padding: "3px 8px", borderRadius: "5px", background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.4)", color: "#4ade80" }}>Voice + SMS</span>
+        </div>
+        <ul className="mt-3 space-y-1.5">
+          <li style={{ fontSize: "12px", color: "#c3cad6" }}>Consent proof · webform.pdf</li>
+          <li style={{ fontSize: "12px", color: "#c3cad6" }}>Source · vendor webform</li>
+          <li style={{ fontSize: "12px", fontWeight: 600, color: "#f0f2f5" }}>Captured · May 14, 9:31 AM</li>
+          <li style={{ fontSize: "12px", color: "#6b7280" }}>Opt-in language · hash pinned</li>
+        </ul>
+      </div>
+
+      <div className="rounded-md border px-4 py-3.5" style={{ borderColor: "#1f2531", background: "#0c1018" }}>
+        <div className="flex items-center justify-between gap-3">
+          <p style={{ fontSize: "14px", fontWeight: 700, color: "#f0f2f5" }}>J. Alvarez</p>
+          <span style={{ fontSize: "9.5px", fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", padding: "3px 8px", borderRadius: "5px", background: "#12151f", border: "1px solid #2a3348", color: "#8a93a5" }}>SMS only</span>
+        </div>
+        <ul className="mt-3 space-y-1.5">
+          <li style={{ fontSize: "12px", color: "#c3cad6" }}>Consent proof · none on file</li>
+          <li style={{ fontSize: "12px", color: "#6b7280" }}>AI voice locked — the dialer skips this lead</li>
+          <li style={{ fontSize: "12px", color: "#6b7280" }}>Upload proof to unlock voice outreach</li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+function QuietHoursPanel() {
+  const rows = [
+    { lead: "Denise W. · Tampa, FL", meta: "Queued 11:04 AM ET", status: "Called 11:04 AM her time", tone: "green" as const },
+    { lead: "Carl H. · Phoenix, AZ", meta: "Queued 8:12 PM local", status: "Deferred · 9:00 AM tomorrow", tone: "amber" as const },
+    { lead: "M. Rivera · Sacramento, CA", meta: "Queued Sunday 2:14 PM", status: "Deferred · Mon 9:00 AM PT", tone: "amber" as const }
+  ];
+
+  const toneStyles = {
+    green: { color: "#4ade80", bg: "rgba(34,197,94,0.08)", border: "rgba(34,197,94,0.4)" },
+    amber: { color: "#fbbf24", bg: "rgba(251,191,36,0.08)", border: "rgba(251,191,36,0.4)" }
+  };
+
+  return (
+    <div>
+      <div className="space-y-2.5">
+        {rows.map((row) => {
+          const style = toneStyles[row.tone];
+          return (
+            <div
+              key={row.lead}
+              className="flex items-center justify-between gap-4 rounded-md border-l-2 px-4 py-3"
+              style={{ borderLeftColor: style.color, borderTop: "1px solid #1f2531", borderRight: "1px solid #1f2531", borderBottom: "1px solid #1f2531", borderRadius: "6px", background: "#0c1018" }}
+            >
+              <div className="min-w-0">
+                <p style={{ fontSize: "13px", fontWeight: 700, color: "#f0f2f5" }}>{row.lead}</p>
+                <p style={{ fontSize: "11.5px", color: "#6b7280", marginTop: "2px" }}>{row.meta}</p>
+              </div>
+              <span
+                className="shrink-0"
+                style={{
+                  fontSize: "9.5px",
+                  fontWeight: 700,
+                  letterSpacing: "0.07em",
+                  textTransform: "uppercase",
+                  padding: "4px 10px",
+                  borderRadius: "5px",
+                  background: style.bg,
+                  border: `1px solid ${style.border}`,
+                  color: style.color
+                }}
+              >
+                {row.status}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+      <p className="mt-4 text-center" style={{ fontSize: "12px", fontStyle: "italic", color: "#6b7280" }}>
+        Deferred — not dropped. The lead keeps their place for the next legal morning.
+      </p>
+    </div>
+  );
+}
+
+function ComplianceGatePanel() {
+  const rows = [
+    {
+      lead: "Linda P.",
+      channel: "SMS",
+      checks: "✓ ✓ ✓ ✓",
+      status: "Sent · 11:42 AM her time",
+      tone: "green" as const
+    },
+    {
+      lead: "Robert M.",
+      channel: "AI call",
+      checks: "✓ 8:52 PM CT ✓",
+      status: "Deferred · Mon 9:00 AM CT",
+      tone: "amber" as const
+    },
+    {
+      lead: "J. Alvarez",
+      channel: "AI call",
+      checks: "✓ ✓ no consent proof ✓",
+      status: "Voice locked · Manual only",
+      tone: "purple" as const
+    },
+    {
+      lead: "(555) 014-2210",
+      channel: "SMS",
+      checks: "on your DNC — — —",
+      status: "Blocked · Logged",
+      tone: "red" as const
+    }
+  ];
+
+  const toneStyles = {
+    green: { color: "#4ade80", bg: "rgba(34,197,94,0.08)", border: "rgba(34,197,94,0.4)" },
+    amber: { color: "#fbbf24", bg: "rgba(251,191,36,0.08)", border: "rgba(251,191,36,0.4)" },
+    purple: { color: "#a78bfa", bg: "rgba(139,92,246,0.08)", border: "rgba(139,92,246,0.4)" },
+    red: { color: "#f87171", bg: "rgba(248,113,113,0.08)", border: "rgba(248,113,113,0.4)" }
+  };
+
+  return (
+    <div>
+      <div className="flex items-center justify-between gap-4 border-b px-4 pb-2 pt-1" style={{ borderColor: "#1f2531" }}>
+        <span style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#8a93a5" }}>Lead · Channel</span>
+        <span style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#8a93a5" }}>DNC · Quiet hours · Consent · Registered sender</span>
+      </div>
+
+      <div className="space-y-0">
+        {rows.map((row) => {
+          const style = toneStyles[row.tone];
+          return (
+            <div key={row.lead} className="flex items-center justify-between gap-4 px-4 py-3">
+              <p style={{ fontSize: "13px", color: "#f0f2f5" }}>
+                <strong style={{ fontWeight: 700 }}>{row.lead}</strong>
+                <span style={{ color: "#6b7280" }}> · {row.channel}</span>
+              </p>
+              <div className="flex items-center gap-3">
+                <span style={{ fontSize: "11px", color: "#6b7280" }}>{row.checks}</span>
+                <span
+                  style={{
+                    fontSize: "9.5px",
+                    fontWeight: 700,
+                    letterSpacing: "0.07em",
+                    textTransform: "uppercase",
+                    padding: "3px 8px",
+                    borderRadius: "5px",
+                    background: style.bg,
+                    border: `1px solid ${style.border}`,
+                    color: style.color,
+                    whiteSpace: "nowrap"
+                  }}
+                >
+                  {row.status}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <p className="px-4 py-3 text-center" style={{ fontSize: "12px", fontStyle: "italic", color: "#6b7280" }}>
+        If a check errors, the send is withheld — the gate fails closed
+      </p>
     </div>
   );
 }

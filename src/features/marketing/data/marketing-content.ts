@@ -537,91 +537,63 @@ export const complianceContent = {
   ] satisfies FeatureCardItem[],
   sections: [
     {
-      title: "Outreach lands in the legal window.",
-      mutedTitle: "The lead's window. Automated calls fire 9am-8pm in the lead's own timezone.",
-      description: "Never Sunday. Texts wait for daytime too. Out-of-window work defers to the next legal morning.",
+      title: "Outreach lands in the legal window — the lead's window.",
+      mutedTitle: "Automated calls fire 9am–8pm in the lead's own timezone, never Sunday. Texts wait for daytime too. Out-of-window work defers to the next legal morning — it never just sends.",
+      description: "",
       panel: {
-        title: "Compliance gate - quiet hours",
-        badge: "Legal local time",
-        variant: "table",
-        rows: [
-          { label: "Drew M. - Tampa, FL", value: "Consent found at 7:03 PM", status: "Cleared", tone: "success" },
-          { label: "Clark R. - Phoenix, AZ", value: "Attempt at 8:44 PM local", status: "Deferred", tone: "warning" },
-          { label: "M. Shaw - Sacramento, CA", value: "Sunday morning attempt", status: "Deferred", tone: "warning" }
-        ]
+        title: "Voice campaign · dispatch schedule",
+        badge: "Lead-local time",
+        variant: "quiet-hours"
       }
     },
     {
       title: "No consent proof on file? The AI doesn't dial.",
-      mutedTitle: "Leads without documented consent are locked out of AI voice.",
-      description: "The dialer skips them. Consent lives on the lead source, opt-in language, timestamp, proof file.",
+      mutedTitle: "Leads without documented consent are locked out of AI voice — the dialer skips them. Consent lives on the lead: source, opt-in language, timestamp, proof file.",
+      description: "",
       panel: {
-        title: "Lead consent file",
+        title: "Leads · compliance state",
         badge: "Consent on record",
-        variant: "table",
-        rows: [
-          { label: "Linda P.", value: "Opt-in language, source, timestamp", status: "Voice and SMS", tone: "success" },
-          { label: "J. Alvarez", value: "Consent proof missing", status: "SMS only", tone: "warning" }
-        ]
+        variant: "consent-cards"
       }
     },
     {
       title: "Your AI introduces itself as an AI.",
-      mutedTitle: "Set your disclosure once, agency-wide, and it opens every AI call.",
-      description: "If any rule changes, INSURVAS pauses the number until the recorded disclosure is corrected.",
+      mutedTitle: "Set your disclosure once, agency-wide, and it opens every AI call — spoken before anything else. When a human call is recorded, both parties hear the consent disclosure first.",
+      description: "",
       panel: {
-        title: "AI call opening",
-        badge: "Disclosure locked",
-        variant: "conversation",
-        rows: [
-          { label: "Ashley AI", value: "Hi, this is Ashley, an automated assistant with the life insurance office, calling on a recorded line." },
-          { label: "System", value: "Disclosure passed. State and agency rules satisfied." }
-        ]
+        title: "AI call · opening",
+        badge: "Disclosure logged",
+        variant: "disclosure"
       }
     },
     {
-      title: "The dialer paces to you.",
-      mutedTitle: "Not a statistical model. First human wins, extra lines are released before anyone hears silence.",
-      description: "Answering machine detection and recorded callback messages are tracked.",
+      title: "The dialer paces to you — not a statistical model.",
+      mutedTitle: "First human wins, extra lines are released before anyone hears silence, and any abandoned call gets your recorded callback message with a press-1 opt-out. All of it tracked in your metrics.",
+      description: "",
       panel: {
-        title: "Pacer - live agent queue",
+        title: "Power dialer · 3 lines · agent-paced",
         badge: "No dead air",
-        variant: "table",
-        rows: [
-          { label: "Line 1", value: "555-210-0981", status: "Connected", tone: "success" },
-          { label: "Line 2", value: "555-771-5548", status: "Released before answer", tone: "info" },
-          { label: "Line 3", value: "555-802-9130", status: "No answer", tone: "neutral" }
-        ]
+        variant: "dialer-pacing"
       }
     },
     {
       title: "One STOP shuts it all down.",
-      mutedTitle: "Conversation closed, drips cancelled, DNC written, confirmation sent from the same number.",
-      description: "A spoken opt-out to the AI is honored the same way.",
+      mutedTitle: "Conversation closed, drips cancelled, DNC written, confirmation sent from the same number — automatically. A spoken opt-out to the AI is honored the same way.",
+      description: "",
       panel: {
-        title: "Inbound STOP",
+        title: "Inbound · (415) 336-0112",
         badge: "Opt-out honored",
-        variant: "table",
-        rows: [
-          { label: "Conversation closed", value: "AI disabled for this lead", status: "Done", tone: "success" },
-          { label: "Drip cancelled", value: "Future texts and emails stopped", status: "Done", tone: "success" },
-          { label: "Confirmation sent", value: "Same number reply", status: "Done", tone: "success" }
-        ]
+        variant: "stop-cascade"
       }
     },
     {
       title: "Every send passes one do-not-call gate.",
-      mutedTitle: "If the check itself errors, the message is withheld.",
-      description: "Every block and pass is logged and imports are scrubbed against your list on entry.",
+      mutedTitle: "If the check itself errors, the message is withheld — the system never gambles on an illegal contact. Every block and pass is logged, and imports are scrubbed against your list on entry.",
+      description: "",
       panel: {
-        title: "DNC enforcement",
+        title: "Compliance log · today",
         badge: "Export CSV",
-        variant: "table",
-        rows: [
-          { label: "12:47 PM", value: "STOP reply - SMS closed", status: "DNC added", tone: "danger" },
-          { label: "2:04 PM", value: "Lead matched internal DNC", status: "Suppressed", tone: "danger" },
-          { label: "5:31 PM", value: "Open outreach checked", status: "Pass", tone: "success" }
-        ]
+        variant: "dnc-log"
       }
     }
   ] satisfies DetailSection[],
@@ -636,11 +608,11 @@ export const complianceContent = {
     { title: "Unsubscribe honored, senders verified", description: "Every email carries unsubscribe controls and verified sending domains." }
   ] satisfies FeatureCardItem[],
   proofBullets: [
-    "A consent record on every lead",
-    "Imports scrubbed on entry",
-    "Compliance state where agents work",
-    "A deliberate attestation step",
-    "An audit trail you can hand over"
+    { title: "A consent record on every lead", desc: "Source, exact opt-in language with a tamper-evident fingerprint, timestamp, and the proof file — retrievable lead by lead." },
+    { title: "Imports scrubbed on entry", desc: "Numbers you've suppressed are stripped from every CSV, manual add, and vendor feed before they can re-enter outreach." },
+    { title: "Compliance state where agents work", desc: "DNC and opt-out badges on the lead, plain warnings when a lead is manual-only, one-click suppress." },
+    { title: "A deliberate attestation step", desc: "Enabling AI voice on an imported batch requires your recorded consent attestation — a checkpoint, not a one-click blast." },
+    { title: "An audit trail you can hand over", desc: "Who suppressed which number, why, and when — plus proof every send was checked. Export it for a carrier, an auditor, or counsel." }
   ],
   cta: {
     title: "Run outreach you can defend.",
