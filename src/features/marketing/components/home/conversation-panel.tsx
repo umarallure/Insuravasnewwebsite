@@ -77,7 +77,7 @@ export function ConversationPanel({
     <PanelFrame
       title={title}
       badge={<PanelPill tone="success">{badge}</PanelPill>}
-      className={cn("mx-auto", className)}
+      className={cn("mx-auto w-full", className)}
       style={{ maxWidth }}
       bodyClassName={dense ? "px-3.5 pb-5 pt-4 " : "p-5 "}
     >

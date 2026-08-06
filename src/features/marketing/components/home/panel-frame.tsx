@@ -28,7 +28,7 @@ export function PanelFrame({
   return (
     <div
       className={cn("overflow-hidden rounded-md border shadow-lg mb-8 ", className)}
-      style={{ background: "#0a0d14", borderColor: "#1f2531", ...style  }}
+      style={{ background: "#0a0d14", borderColor: "#1f2531", width: "100%", ...style  }}
     >
       {toolbar ? (
         <div

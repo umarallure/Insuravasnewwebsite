@@ -13,7 +13,7 @@ export function MarketingHero({ content, children, compact = false }: MarketingH
   const titleLines = content.titleLines?.length ? content.titleLines : [content.title];
 
   return (
-    <section className="px-8 text-center" style={{ paddingTop: compact ? "18px" : "104px", paddingBottom: 0 }}>
+    <section className="px-4 text-center sm:px-8" style={{ paddingTop: compact ? "18px" : "104px", paddingBottom: 0 }}>
       {content.eyebrow ? (
         <Link
           href="/sales-ai"
@@ -77,7 +77,7 @@ export function MarketingHero({ content, children, compact = false }: MarketingH
       ) : null}
       {children ? (
         <div
-          className="-mx-8"
+          className="-mx-4 sm:-mx-8"
           style={{
             marginTop: compact ? "16px" : "64px",
             paddingBottom: compact ? "2px" : "48px",

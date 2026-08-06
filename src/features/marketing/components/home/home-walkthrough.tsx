@@ -42,8 +42,10 @@ export function HomeWalkthrough({ railItems, sections }: HomeWalkthroughProps) {
                 {section.title} <span style={{ color: "#6B7280" }}>{section.mutedTitle}</span>
               </h3>
               {Panel ? (
-                <div className={panel.backdrop ? "surface-vlines mt-7 -mx-6 px-6 py-9" : "mt-7"}>
-                  <Panel />
+                <div className={panel.backdrop ? "surface-vlines mt-7 overflow-hidden rounded-md py-9 sm:-mx-6 sm:px-6" : "mt-7"}>
+                  <div className="overflow-x-auto">
+                    <Panel />
+                  </div>
                 </div>
               ) : null}
             </article>
